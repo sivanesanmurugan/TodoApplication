@@ -1,0 +1,91 @@
+<p class="fs-1 text-center my-2">Todo Application</p>
+<form class="container w-50 my-5">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="exampleInputEmail1"
+      name="email"
+      ngModel
+      required
+      email
+      #Emailvaild="ngModel"
+      [ngClass]="Emailvaild.invalid && Emailvaild.dirty ? 'is-invalid ' : ''"
+      [(ngModel)]="emailRef"
+    />
+    <div *ngIf="Emailvaild.invalid" class="invalid-feedback">
+      please enter the valid email
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="exampleInputPassword1"
+      name="name"
+      ngModel
+      required
+      minlength="3"
+      maxlength="15"
+      #Namevaild="ngModel"
+      [(ngModel)]="nameRef"
+      [ngClass]="Namevaild.invalid && Namevaild.dirty ? 'is-invalid ' : ''"
+    />
+    <div *ngIf="Namevaild.invalid" class="invalid-feedback">
+      please enter the name min 3 characters
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Phone Number</label>
+    <input
+      type="text"
+      class="form-control"
+      id="exampleInputPassword1"
+      name="phonenumber"
+      ngModel
+      required
+      minlength="10"
+      maxlength="10"
+      #Phonevaild="ngModel"
+      [ngClass]="
+        Phonevaild.invalid && Phonevaild.dirty ? 'is-invalid ' : ''
+      "
+      [(ngModel)]="numberRef"
+    />
+    <div *ngIf="Phonevaild.invalid" class="invalid-feedback">
+      please enter the valid phonenumber
+    </div>
+  </div>
+  <button type="button" class="btn btn-warning" (click)="add()">
+    {{ Add }}
+  </button>
+</form>
+<p class="fs-2 text-center my-2">Details</p>
+<table class="table table-hover container w-50">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Phone Number</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let todo of todos">
+    <tr>
+      <td>{{ todo.id }}</td>
+      <td>{{ todo.name }}</td>
+      <td>{{ todo.phonenumber }}</td>
+      <td>{{ todo.email }}</td>
+      <td>
+        <button class="btn btn-primary ms-2" (click)="edit(todo.id)">
+          edit</button
+        ><button class="btn btn-danger ms-2" (click)="delete(todo.id)">
+          delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
