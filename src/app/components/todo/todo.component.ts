@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Todo } from 'src/app/models/todo';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css'],
-}) 
+})
 export class TodoComponent {
   emailRef: string = '';
   nameRef: string = '';
@@ -13,7 +14,7 @@ export class TodoComponent {
   todos: Todo[] = [];
   Add: string = 'Add';
   editid: number = 0;
-  add() {
+  add(form: NgForm) {
     if (this.editid === 0) {
       let todo = {
         id: this.todos.length + 1,
@@ -43,6 +44,7 @@ export class TodoComponent {
     this.emailRef = '';
     this.nameRef = '';
     this.numberRef = '';
+    form.resetForm();
   }
   edit(id: number) {
     this.editid = id;

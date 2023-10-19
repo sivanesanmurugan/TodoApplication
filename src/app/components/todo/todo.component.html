@@ -1,5 +1,5 @@
 <p class="fs-1 text-center my-2">Todo Application</p>
-<form class="container w-50 my-5">
+<form class="container w-50 my-5" #form="ngForm">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
     <input
@@ -49,16 +49,14 @@
       minlength="10"
       maxlength="10"
       #Phonevaild="ngModel"
-      [ngClass]="
-        Phonevaild.invalid && Phonevaild.dirty ? 'is-invalid ' : ''
-      "
+      [ngClass]="Phonevaild.invalid && Phonevaild.dirty ? 'is-invalid ' : ''"
       [(ngModel)]="numberRef"
     />
     <div *ngIf="Phonevaild.invalid" class="invalid-feedback">
-      please enter the valid phonenumber
+      please enter minimum 10 numbers
     </div>
   </div>
-  <button type="button" class="btn btn-warning" (click)="add()">
+  <button type="button" class="btn btn-warning" (click)="add(form)">
     {{ Add }}
   </button>
 </form>
